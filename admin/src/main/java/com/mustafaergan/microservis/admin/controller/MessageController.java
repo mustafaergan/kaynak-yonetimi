@@ -1,8 +1,10 @@
 package com.mustafaergan.microservis.admin.controller;
 
 import com.mustafaergan.microservis.admin.entity.MessageResource;
-import com.mustafaergan.microservis.admin.service.DatabaseMessageSourceService;
 import com.mustafaergan.microservis.admin.repository.MessageResourceRepository;
+import com.mustafaergan.microservis.admin.service.DatabaseMessageSourceService;
+import com.mustafaergan.microservis.common.security.annotation.ReadAuthorization;
+import com.mustafaergan.microservis.common.security.annotation.WriteAuthorization;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.apache.commons.lang.LocaleUtils;
@@ -12,7 +14,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -37,16 +38,14 @@ public class MessageController {
     @Autowired
     private MessageResourceRepository messageResourceRepository;
 
-
-//    @PreAuthorize("#oauth2.hasScope('WRITE')")
-    @PreAuthorize("hasRole('ROLE_WRITE')")
+    @WriteAuthorization
     @ApiOperation(value = "tüm dilleri doner")
     @GetMapping(value ="/")
     public Map<String, Map<Locale, String>>  getMessage() {
         return databaseMessageSourceService.getMessages();
     }
 
-    @PreAuthorize("hasRole('ROLE_READ')")
+    @ReadAuthorization
     @ApiOperation(value = "Butun MessageResource Listeler")
     @GetMapping(value ="/db/")
     public Iterable<MessageResource> listLog() {
