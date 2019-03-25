@@ -38,14 +38,15 @@ public class MessageController {
     private MessageResourceRepository messageResourceRepository;
 
 
-//    @PreAuthorize("#oauth2.hasScope('requiredScope')")
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+//    @PreAuthorize("#oauth2.hasScope('WRITE')")
+    @PreAuthorize("hasRole('ROLE_WRITE')")
     @ApiOperation(value = "tüm dilleri doner")
     @GetMapping(value ="/")
     public Map<String, Map<Locale, String>>  getMessage() {
         return databaseMessageSourceService.getMessages();
     }
 
+    @PreAuthorize("hasRole('ROLE_READ')")
     @ApiOperation(value = "Butun MessageResource Listeler")
     @GetMapping(value ="/db/")
     public Iterable<MessageResource> listLog() {

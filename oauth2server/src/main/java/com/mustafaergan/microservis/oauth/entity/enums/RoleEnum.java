@@ -5,5 +5,5 @@ package com.mustafaergan.microservis.oauth.entity.enums;
  */
 public enum RoleEnum {
     USER,
-    ROLE_ADMIN;
+    ADMIN;
 }

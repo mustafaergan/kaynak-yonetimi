@@ -44,25 +44,30 @@ public class OauthApplication implements CommandLineRunner {
 	public void run(String...args) throws Exception {
 
 		Privilege privilege = new Privilege();
-		privilege.setPrivilegeEnum(PrivilegeEnum.READ);
+		privilege.setPrivilegeEnum(PrivilegeEnum.ROLE_WRITE);
 		privilegeRepository.save(privilege);
 
 		Privilege privilege2= new Privilege();
-		privilege2.setPrivilegeEnum(PrivilegeEnum.WRITE);
+		privilege2.setPrivilegeEnum(PrivilegeEnum.ROLE_READ);
 		privilegeRepository.save(privilege2);
 
 
+		Privilege privilege3= new Privilege();
+		privilege3.setPrivilegeEnum(PrivilegeEnum.ROLE_CLIENT);
+		privilegeRepository.save(privilege3);
+
+
 		Role role = new Role();
-		role.setRoleEnum(RoleEnum.ROLE_ADMIN);
+		role.setRoleEnum(RoleEnum.ADMIN);
 		role.setPrivilegeList(Arrays.asList(privilege,privilege2));
 		roleRepository.save(role);
-		role = roleRepository.findByRoleEnum(RoleEnum.ROLE_ADMIN);
+		role = roleRepository.findByRoleEnum(RoleEnum.ADMIN);
 
 
 
 		Role role2 = new Role();
 		role2.setRoleEnum(RoleEnum.USER);
-		role2.setPrivilegeList(Arrays.asList(privilege));
+		role2.setPrivilegeList(Arrays.asList(privilege2,privilege3));
 		roleRepository.save(role2);
 		role2 = roleRepository.findByRoleEnum(RoleEnum.USER);
 
