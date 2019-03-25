@@ -2,6 +2,7 @@ package com.mustafaergan.microservis.admin.controller;
 
 import com.mustafaergan.microservis.admin.entity.Parameter;
 import com.mustafaergan.microservis.admin.repository.ParameterRepository;
+import com.mustafaergan.microservis.common.security.annotation.ClientAuthorization;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
@@ -26,7 +27,7 @@ public class ParameterController {
     @Autowired
     private ParameterRepository repository;
 
-    @PreAuthorize("hasRole('ROLE_CLIENT')")
+    @ClientAuthorization
     @ApiOperation(value = "Tüm Parameteri listeler")
     @GetMapping
     public ResponseEntity<List<Parameter>> list(){

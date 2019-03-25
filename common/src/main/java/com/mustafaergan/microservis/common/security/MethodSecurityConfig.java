@@ -1,4 +1,4 @@
-package com.mustafaergan.microservis.common.conf;
+package com.mustafaergan.microservis.common.security;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.access.expression.method.MethodSecurityExpressionHandler;
