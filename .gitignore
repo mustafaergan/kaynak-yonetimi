@@ -1,0 +1,25 @@
+# Maven
+target/
+!.mvn/wrapper/maven-wrapper.jar
+
+# Node / Angular
+node_modules/
+dist/
+/ui/tmp/
+npm-debug.log*
+
+# Eclipse / IntelliJ / VS Code
+.project
+.classpath
+.settings/
+.factorypath
+.idea/
+*.iml
+.vscode/
+
+# Diğer
+*.log
+logs/
+.env
+.DS_Store
+Thumbs.db
